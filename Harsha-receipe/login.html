@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Harsha's Parametric Recipe Finder</title>
+        <link rel="stylesheet" href="style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Harsha's Parametric Recipe Finder</h1>
+        <div class="box">
+            <form action="/" method="post">
+              <input type="text" name="username" id="username" placeholder="Username" required/>
+              <br>
+              <input type="password" name="password" id="password" placeholder="Password" required/>
+              <br>
+              <input type="submit" class="button" value="Log In"/>
+            </form>
+      </div>
+      <div id="loading">
+            <img id="loading-image" style="border: none;" src="loader.gif" alt="I am hungry..." />
+      </div>
+        <script src="jquery-3.3.1.min.js"></script>
+        <script src="script.js"></script>
+        <script>
+            $(window).on('load', function () {
+              $('#loading').hide();
+            }) 
+          </script>
+      
+      {%if users%}
+      <div class="users" style="margin-left:20%">
+        <h2>Registered Users List</h2>
+        <table style="width:100%;">
+          {%for user in users%}
+            <tr>
+              <td>{{user[0]}}</td>
+            </tr>   
+          {%endfor%}
+        </table>
+      </div>
+      {%endif%}
+</body>
+</html>
+<form action="javascript:login_user()">
+    <p><label>
+        Login ID:
+        <input type="text" name="uid" id="uid" required>
+    </label></p>
+    <p><label>
+        Password:
+        <input type="password" name="password" id="password" required>
+    </label></p>
+    <p><button>Login</button></p>
+    <p id="message"></p>
+</form>
+
+<script>
+    function login_user(){
+        // Set body to include login data
+        const body = {
+            uid: document.getElementById("uid").value,
+            password: document.getElementById("password").value,
+        };
+
+        // Set Headers to support cross origin
+        const requestOptions = {
+            method: 'POST',
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'include', // include, *same-origin, omit
+            body: JSON.stringify(body),
+            headers: {
+                "content-type": "application/json",
+            },
+        };
+
+        }
+</script>
